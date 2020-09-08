@@ -1,0 +1,13 @@
+<h1>Account Page</h1>
+<div class='details'>
+    <img src="..\assets\corgi.jpg" width="400" height="200">
+    <table class='table'>
+        <tr><td>Email: </td></tr><tr><td>{{email}}</td></tr>
+    </table> 
+</div>
+<div class="updatedetails">
+    <form id="updateform">
+        <label for="email">Email: </label> <br>
+        <input type="text" id="email" [(ngModel)]='email' name ="email"/> <br>
+    </form>
+</div>

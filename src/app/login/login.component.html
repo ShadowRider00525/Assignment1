@@ -1,10 +1,10 @@
 <h1>Login Page</h1>
-<div id="loginpage">
+<div class="loginpage">
     <form id="signin">
-        <label for="username">Username: </label><br>
-        <input type="text" [(ngModel)]="username" name="username"/> <br>
-        <label for="password">Password: </label><br>
-        <input type="password" ([ngModel])='pass' name='pass'/> <br>      
+        <label for="username">Username: </label> <br>
+        <input type="text" [(ngModel)]='username' name ="username"/> <br>
+        <label for="pass">Password: </label> <br>
+        <input type="password" [(ngModel)]='pass' name="pass" /> <br>
         <button (click)="itemClicked()">Sign in</button>
         <button (click)="logOut()">Logout</button>
         <div id='errormsg'>{{errormsg}}</div>

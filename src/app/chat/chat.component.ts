@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../services/socket.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
@@ -7,11 +8,11 @@ import { SocketService } from '../services/socket.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  messagecontent:string="";
+  messagecontent:string='';
   messages:string[] = [];
   ioConnection:any;
 
-  constructor(private socketService:SocketService) {}
+  constructor(private socketService:SocketService) { }
 
   ngOnInit(){
     this.initIoConnection();
@@ -22,8 +23,8 @@ export class ChatComponent implements OnInit {
     .subscribe((message:string) => {
       this.messages.push(message);
     });
-  }
-  
+  }  
+
   public chat(){
     if(this.messagecontent){
       this.socketService.send(this.messagecontent);

@@ -9,17 +9,18 @@ const SERVER_URL = 'http://localhost:3000';
 })
 export class SocketService {
   private socket;
-  constructor() {}
+  constructor() { }
 
   public initSocket(): void{
     this.socket = io(SERVER_URL);
   }
-  public send(message:string): void{
+
+  public send(message: string): void{
     this.socket.emit('message', message);
   }
   public onMessage(): Observable<any> {
-    let observable = new Observable(observable=>{
-      this.socket.on('message',(data:string)=> observable.next(data));
+    let observable = new Observable(observer=>{
+      this.socket.on('message',(data:string)=> observer.next(data));
     });
     return observable;
   }
