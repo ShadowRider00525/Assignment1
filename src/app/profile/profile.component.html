@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Profile Page</h1>
+    <img src="..\assets\skyline.jpg" width="400" height="300">
+    <table class='table'>
+        <tr><td>Email: </td></tr><tr><td>{{email}}</td></tr>
+        <tr><td>Position: </td></tr><tr><td>{{position}}</td></tr>
+    </table>
+
+    <div id="updatedetails">
+        <form id="updateform">
+            <label for="email">Email: </label><br>
+            <input type="text" id="email" [(ngModel)]="email" name="email"/><br>
+            <label for="position">Position: </label><br>
+            <input type="text" id="position" [(ngModel)]="position" name="position"/><br>
+        </form>
+    </div>
+    
+</body>
+</html>
