@@ -4,20 +4,20 @@ import { User } from '../user';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  selector: 'app-groupadminchat',
+  templateUrl: './groupadminchat.component.html',
+  styleUrls: ['./groupadminchat.component.css']
 })
-export class ChatComponent implements OnInit {
-  messagecontent:string='';
-  messages:string[] = [];
+export class GroupadminchatComponent implements OnInit {
+
+  groupadminmessagecontent:string='';
+  groupadminmessages:string[] = [];
   ioConnection:any;
   username:string = '';
   errormsg = '';
   newuser:User;
 
   constructor(private socketService:SocketService) { }
-
   ngOnInit(){
     this.newuser = JSON.parse(sessionStorage.getItem('currentUser'));
     if(this.newuser != null){
@@ -28,18 +28,18 @@ export class ChatComponent implements OnInit {
   private initIoConnection(){
     this.socketService.initSocket();
     this.ioConnection = this.socketService.onMessage()
-    .subscribe((message:string) => {
-      this.messages.push(message);
+    .subscribe((groupadminmessage:string) => {
+      this.groupadminmessages.push(groupadminmessage);
     });
   }  
 
   public chat(){
-    if(this.messagecontent){
-      this.socketService.send(this.messagecontent);
-      this.messagecontent=null;
+    if(this.groupadminmessagecontent){
+      this.socketService.send(this.groupadminmessagecontent);
+      this.groupadminmessagecontent=null;
     }else{
       console.log('no message');
     }
   }
-}
 
+}

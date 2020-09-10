@@ -8,13 +8,17 @@ import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChatComponent } from './chat/chat.component';
+import { GroupadminchatComponent } from './groupadminchat/groupadminchat.component';
+import { SuperuserchatComponent } from './superuserchat/superuserchat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ChatComponent,
-    AccountComponent
+    AccountComponent,
+    GroupadminchatComponent,
+    SuperuserchatComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,6 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent implements OnInit {
   username:string = '';
   pass:string = '';
-  email:string = '';
   role:string = '';
   errormsg = '';
   newuser:User;
@@ -25,25 +24,33 @@ export class LoginComponent implements OnInit {
   }
   
   itemClicked(){
-    this.http.post<User>('http://localhost:3000/api/auth', {username: this.username, pass: this.pass}).subscribe(
+    this.http.post<User>('http://localhost:3000/api/auth', {username: this.username, pass: this.pass, role: this.role}).subscribe(
     data =>{
       if(data.valid == true){
-        this.newuser = new User(data.username,data.email, data.role)
+        this.newuser = new User(data.username,data.email, data.pass,data.role)
         sessionStorage.setItem('currentUser',JSON.stringify(this.newuser));
-        this.router.navigate(['/account']);
+        if(this.newuser.role == "Group Assistant"){
+          this.router.navigate(['/chat']);
+        }
+        if(this.newuser.role == "Group Admin"){
+          this.router.navigate(['groupadminchat']);
+        }
+        if(this.newuser.role == "Super User"){
+          this.router.navigate(['superuserchat']);
+        }
       }
-    else{
-      this.errormsg = "Incorrect Credentials"
-    }
-    error =>{
-      this.errormsg = "Incorrect Credentials"
-    }
-    console.log(data);
-  })
-}
-logOut(){
-  sessionStorage.clear();
-  this.router.navigate(['/chat']);
+      else{
+        this.errormsg = "Incorrect Credentials"
+      }
+      error =>{
+        this.errormsg = "Incorrect Credentials"
+      }
+      console.log(data);
+      })
+  }
+  logOut(){
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
 
-}
+  }
 }
